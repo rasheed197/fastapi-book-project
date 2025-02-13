@@ -60,7 +60,7 @@ async def get_book(book_id: int) -> Book:
         content=book.model_dump()
     )
     raise HTTPException(
-        status_code=status.HTTP_404_NOT_FOUND, detail={"msg": "book not found"}
+        status_code=status.HTTP_404_NOT_FOUND, detail="Book not found"
     )
 
 
