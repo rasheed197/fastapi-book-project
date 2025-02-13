@@ -1,17 +1,23 @@
-name: Deploy
+name: Deploy to AWS
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Run Tests"]
+    types:
+      - completed
 
 jobs:
   deploy:
+    name: Deploy to AWS
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}  # Deploy only if tests pass
 
     steps:
-      - name: SSH into AWS and deploy
-        uses: appleboy/ssh-action@v0.1.10
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to AWS
+        uses: appleboy/ssh-action@v0.1.7
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ubuntu
