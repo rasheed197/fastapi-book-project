@@ -24,7 +24,7 @@ jobs:
           key: ${{ secrets.AWS_SSH_KEY }}
           script: |
             cd /home/ubuntu/fastapi-book-project
-            git pull origin main
+            git fetch origin main
             source venv/bin/activate
             pip install -r requirements.txt
             sudo systemctl restart fastapi
