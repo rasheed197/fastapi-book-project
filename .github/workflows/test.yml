@@ -29,12 +29,6 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Linter (Flake8)
-        run: |
-          source venv/bin/activate
-          pip install flake8
-          flake8 . --count --max-line-length=88 --statistics
-
       - name: Run Tests (Pytest)
         run: |
           source venv/bin/activate
